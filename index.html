@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thummar Deep - Senior Software Engineer</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            300: '#5eead4',
+                            400: '#2dd4bf',
+                            500: '#14b8a6', // Primary Brand Color
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                            950: '#042f2e',
+                        },
+                        dark: {
+                            bg: '#0B1120',
+                            panel: '#1E293B',
+                            border: '#334155'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B1120; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569; 
+        }
+
+        /* Glitch Effect for Title */
+        .glitch-hover:hover {
+            position: relative;
+        }
+        .glitch-hover:hover::before,
+        .glitch-hover:hover::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+        }
+        .glitch-hover:hover::before {
+            left: 2px;
+            text-shadow: -1px 0 red;
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+        .glitch-hover:hover::after {
+            left: -2px;
+            text-shadow: -1px 0 blue;
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim-1 {
+            0% { clip: rect(20px, 9999px, 85px, 0); }
+            20% { clip: rect(54px, 9999px, 12px, 0); }
+            40% { clip: rect(89px, 9999px, 45px, 0); }
+            60% { clip: rect(12px, 9999px, 78px, 0); }
+            80% { clip: rect(67px, 9999px, 23px, 0); }
+            100% { clip: rect(34px, 9999px, 90px, 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(65px, 9999px, 10px, 0); }
+            20% { clip: rect(23px, 9999px, 89px, 0); }
+            40% { clip: rect(78px, 9999px, 45px, 0); }
+            60% { clip: rect(12px, 9999px, 56px, 0); }
+            80% { clip: rect(90px, 9999px, 23px, 0); }
+            100% { clip: rect(34px, 9999px, 78px, 0); }
+        }
+        
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-dark-bg text-slate-300 font-sans antialiased selection:bg-brand-500 selection:text-white min-h-screen relative overflow-x-hidden">
+
+    <!-- Futuristic Background Elements -->
+    <div class="fixed inset-0 z-0 pointer-events-none opacity-20">
+        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-brand-600 rounded-full mix-blend-screen filter blur-[100px] animate-pulse-slow"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-blue-600 rounded-full mix-blend-screen filter blur-[100px] animate-pulse-slow" style="animation-delay: 1.5s;"></div>
+        <div class="absolute top-[40%] left-[60%] w-64 h-64 bg-purple-600 rounded-full mix-blend-screen filter blur-[80px] animate-float"></div>
+        <!-- Grid overlay -->
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] [mask-image:linear-gradient(to_bottom,white,transparent)]"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-panel border-b border-dark-border transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <i class="ph-fill ph-terminal-window text-brand-400 text-2xl"></i>
+                    <span class="font-mono font-bold text-white tracking-wider">T.DEEP<span class="text-brand-500">_</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-sm font-medium text-slate-300 hover:text-brand-400 transition-colors">About</a>
+                    <a href="#experience" class="text-sm font-medium text-slate-300 hover:text-brand-400 transition-colors">Experience</a>
+                    <a href="#skills" class="text-sm font-medium text-slate-300 hover:text-brand-400 transition-colors">Skills</a>
+                    <a href="#projects" class="text-sm font-medium text-slate-300 hover:text-brand-400 transition-colors">Projects</a>
+                    <a href="#awards" class="text-sm font-medium text-slate-300 hover:text-brand-400 transition-colors">Awards</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-300 hover:text-white focus:outline-none">
+                        <i class="ph ph-list text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark-panel border-b border-dark-border">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-brand-400 hover:bg-slate-800">About</a>
+                <a href="#experience" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-brand-400 hover:bg-slate-800">Experience</a>
+                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-brand-400 hover:bg-slate-800">Skills</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-brand-400 hover:bg-slate-800">Projects</a>
+                <a href="#awards" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-brand-400 hover:bg-slate-800">Awards</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative z-10 pt-24 pb-12 sm:pt-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Hero Section -->
+        <section id="about" class="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 mb-24">
+            <div class="flex-1 space-y-6 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-900/30 border border-brand-500/30 text-brand-300 text-xs font-mono mb-4">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
+                    </span>
+                    Available for Remote / Hybrid / On-site
+                </div>
+                <h1 class="text-5xl sm:text-7xl font-bold text-white tracking-tight glitch-hover" data-text="DEEP THUMMAR">
+                    DEEP THUMMAR
+                </h1>
+                <h2 class="text-2xl sm:text-3xl text-brand-400 font-medium">Senior Software Engineer</h2>
+                <p class="text-lg text-slate-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                    Passionate Software Engineer with <span class="text-white font-semibold">4.3+ years</span> of experience. Expert in .NET Core, ReactJS, and building scalable web architectures with robust API design.
+                </p>
+                
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+                    <a href="mailto:6355489829@deepthumar224@gmail.com" class="flex items-center gap-2 px-6 py-3 bg-brand-600 hover:bg-brand-500 text-white rounded-lg font-medium transition-all shadow-[0_0_15px_rgba(20,184,166,0.3)] hover:shadow-[0_0_25px_rgba(20,184,166,0.5)]">
+                        <i class="ph ph-envelope-simple text-xl"></i>
+                        Contact Me
+                    </a>
+                    <a href="https://www.linkedin.com/in/thumar-deep-818489341/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-6 py-3 glass-panel hover:bg-slate-800 text-white rounded-lg font-medium transition-all">
+                        <i class="ph ph-linkedin-logo text-xl text-[#0A66C2]"></i>
+                        LinkedIn
+                    </a>
+                    <a href="https://g.dev/deepthumar" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-6 py-3 glass-panel hover:bg-slate-800 text-white rounded-lg font-medium transition-all">
+                        <i class="ph ph-google-logo text-xl text-red-500"></i>
+                        Google Dev
+                    </a>
+                </div>
+            </div>
+
+            <!-- Profile Image Area -->
+            <div class="flex-shrink-0 relative group">
+                <div class="absolute -inset-1 bg-gradient-to-r from-brand-500 to-blue-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                <div class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-2xl overflow-hidden glass-panel p-2">
+                    <!-- Replace the src below with your actual image path later -->
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop" alt="Deep Thummar" class="w-full h-full object-cover rounded-xl grayscale group-hover:grayscale-0 transition-all duration-500">
+                    
+                    <!-- Decorative scanner line effect -->
+                    <div class="absolute inset-0 w-full h-1 bg-brand-400/50 shadow-[0_0_10px_rgba(45,212,191,0.8)] opacity-0 group-hover:opacity-100 group-hover:animate-[scan_2s_ease-in-out_infinite]"></div>
+                </div>
+                <!-- Floating tech badges -->
+                <div class="absolute -top-4 -right-4 glass-panel p-2 rounded-lg animate-float" style="animation-delay: 0s;">
+                    <i class="ph-fill ph-atom text-cyan-400 text-2xl" title="React"></i>
+                </div>
+                <div class="absolute -bottom-4 -left-4 glass-panel p-2 rounded-lg animate-float" style="animation-delay: 1s;">
+                    <i class="ph-fill ph-code-block text-purple-400 text-2xl" title=".NET"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats/Key Achievements Highlight -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-24">
+            <div class="glass-panel p-6 rounded-xl border-l-4 border-l-brand-500 hover:-translate-y-1 transition-transform">
+                <div class="flex items-center gap-3 mb-2">
+                    <i class="ph ph-users-three text-2xl text-brand-400"></i>
+                    <h3 class="text-white font-semibold">Leadership</h3>
+                </div>
+                <p class="text-sm text-slate-400">Led 5-dev team to deliver 2 weeks early.</p>
+            </div>
+            <div class="glass-panel p-6 rounded-xl border-l-4 border-l-blue-500 hover:-translate-y-1 transition-transform">
+                <div class="flex items-center gap-3 mb-2">
+                    <i class="ph ph-lightning text-2xl text-blue-400"></i>
+                    <h3 class="text-white font-semibold">Optimization</h3>
+                </div>
+                <p class="text-sm text-slate-400">Reduced API response time by 25%.</p>
+            </div>
+            <div class="glass-panel p-6 rounded-xl border-l-4 border-l-purple-500 hover:-translate-y-1 transition-transform">
+                <div class="flex items-center gap-3 mb-2">
+                    <i class="ph ph-trend-up text-2xl text-purple-400"></i>
+                    <h3 class="text-white font-semibold">Impact</h3>
+                </div>
+                <p class="text-sm text-slate-400">Boosted user engagement by 15%.</p>
+            </div>
+            <div class="glass-panel p-6 rounded-xl border-l-4 border-l-green-500 hover:-translate-y-1 transition-transform">
+                <div class="flex items-center gap-3 mb-2">
+                    <i class="ph ph-graduation-cap text-2xl text-green-400"></i>
+                    <h3 class="text-white font-semibold">Mentorship</h3>
+                </div>
+                <p class="text-sm text-slate-400">Improved junior dev efficiency by 20%.</p>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="mb-24">
+            <div class="flex items-center gap-3 mb-10">
+                <i class="ph-fill ph-briefcase text-3xl text-brand-400"></i>
+                <h2 class="text-3xl font-bold text-white">Professional Experience</h2>
+                <div class="h-px bg-dark-border flex-1 ml-4"></div>
+            </div>
+
+            <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-dark-border before:to-transparent">
+                
+                <!-- Experience 1 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-brand-500 bg-dark-bg text-brand-400 shadow-[0_0_10px_rgba(20,184,166,0.2)] group-hover:shadow-[0_0_20px_rgba(20,184,166,0.6)] group-hover:bg-brand-500 group-hover:text-white transition-all shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                        <i class="ph-bold ph-rocket-launch"></i>
+                    </div>
+                    
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-panel p-6 rounded-xl group-hover:border-brand-500/50 transition-colors">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2 gap-2">
+                            <h3 class="font-bold text-xl text-white">Senior Software Developer</h3>
+                            <span class="text-xs font-mono text-brand-400 bg-brand-900/30 px-2 py-1 rounded">04/2025 - Present</span>
+                        </div>
+                        <div class="text-slate-300 font-medium mb-4 flex items-center gap-1">
+                            <i class="ph ph-buildings text-slate-500"></i> RebbitWeb
+                        </div>
+                        <ul class="space-y-2 text-sm text-slate-400 list-none">
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-caret-right text-brand-500 mt-0.5 shrink-0"></i>
+                                <span>Developing web apps using ASP.NET Zero, Core, MVC, and Web API.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-caret-right text-brand-500 mt-0.5 shrink-0"></i>
+                                <span>Building dynamic front-ends with JavaScript, jQuery, AJAX.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-caret-right text-brand-500 mt-0.5 shrink-0"></i>
+                                <span>Collaborating cross-functionally to deliver high-impact digital solutions.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Experience 2 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-dark-border bg-dark-bg text-slate-400 group-hover:border-blue-500 group-hover:text-blue-400 transition-all shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                        <i class="ph-bold ph-code"></i>
+                    </div>
+                    
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-panel p-6 rounded-xl group-hover:border-blue-500/50 transition-colors">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2 gap-2">
+                            <h3 class="font-bold text-xl text-white">Senior Software Developer</h3>
+                            <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-1 rounded">09/2021 - 02/2025</span>
+                        </div>
+                        <div class="text-slate-300 font-medium mb-4 flex items-center gap-1">
+                            <i class="ph ph-buildings text-slate-500"></i> Infinity Group of Companies
+                        </div>
+                        <ul class="space-y-2 text-sm text-slate-400 list-none">
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-caret-right text-blue-500 mt-0.5 shrink-0"></i>
+                                <span>Led design & dev of scalable C# MVC & SQL Server applications.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-caret-right text-blue-500 mt-0.5 shrink-0"></i>
+                                <span>Optimized API performance & implemented secure token management.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-caret-right text-blue-500 mt-0.5 shrink-0"></i>
+                                <span>Improved DB queries for performance and data integrity.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Experience 3 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-dark-border bg-dark-bg text-slate-400 group-hover:border-orange-500 group-hover:text-orange-400 transition-all shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                        <i class="ph-bold ph-coffee"></i>
+                    </div>
+                    
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-panel p-6 rounded-xl group-hover:border-orange-500/50 transition-colors">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2 gap-2">
+                            <h3 class="font-bold text-xl text-white">Jr. Java Developer</h3>
+                            <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-1 rounded">03/2021 - 09/2021</span>
+                        </div>
+                        <div class="text-slate-300 font-medium mb-4 flex items-center gap-1">
+                            <i class="ph ph-buildings text-slate-500"></i> XRStudio
+                        </div>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-2 py-1 bg-slate-800 text-orange-300 rounded text-xs border border-orange-700/50">Java</span>
+                            <span class="px-2 py-1 bg-slate-800 text-orange-300 rounded text-xs border border-orange-700/50">Spring Boot</span>
+                            <span class="px-2 py-1 bg-slate-800 text-orange-300 rounded text-xs border border-orange-700/50">PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Technical Arsenal (Skills) -->
+        <section id="skills" class="mb-24">
+            <div class="flex items-center gap-3 mb-10">
+                <i class="ph-fill ph-cpu text-3xl text-brand-400"></i>
+                <h2 class="text-3xl font-bold text-white">Technical Arsenal</h2>
+                <div class="h-px bg-dark-border flex-1 ml-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Frontend -->
+                <div class="glass-panel p-6 rounded-xl border-t-2 border-t-brand-500">
+                    <h3 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                        <i class="ph ph-browser text-brand-400"></i> Frontend
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-800 text-slate-300 rounded-md text-sm border border-slate-700 hover:border-brand-500 hover:text-brand-300 cursor-default transition-colors">ReactJS</span>
+                        <span class="px-3 py-1 bg-slate-800 text-slate-300 rounded-md text-sm border border-slate-700 hover:border-brand-500 hover:text-brand-300 cursor-default transition-colors">JavaScript</span>
+                        <span class="px-3 py-1 bg-slate-800 text-slate-300 rounded-md text-sm border border-slate-700 hover:border-brand-500 hover:text-brand-300 cursor-default transition-colors">AngularJS</span>
+                        <span class="px-3 py-1 bg-slate-800 text-slate-300 rounded-md text-sm border border-slate-700 hover:border-brand-500 hover:text-brand-300 cursor-default transition-colors">HTML/CSS</span>
+                        <span class="px-3 py-1 bg-slate-800 text-slate-300 rounded-md text-sm border border-slate-700 hover:border-brand-500 hover:text-brand-300 cursor-default transition-colors">jQuery</span>
+                    </div>
+                </div>
+
+                <!-- Backend -->
+                <div class="glass-panel p-6 rounded-xl border-t-2 border-t-blue-500">
+                    <h3 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                        <i class="ph ph-hard-drives text-blue-400"></i> Backend & DB
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-800 text-slate-300 rounded-md text-sm border border-slate-700 hover:border-blue-500 hover:text-blue-300 cursor-default transition-colors">.NET Core / MVC</span>
+                        <span class="px-3 py-1 bg-slate-800 text-slate-300 rounded-md text-sm border border-slate-700 hover:border-blue-500 hover:text-blue-300 cursor-default transition-colors">NodeJS</span>
+                        <span class="px-3 py-1 bg-slate-800 text-slate-300 rounded-md text-sm border border-slate-700 hover:border-blue-500 hover:text-blue-300 cursor-default transition-colors">NestJS</span>
+                        <span class="px-3 py-1 bg-slate-800 text-slate-300 rounded-md text-sm border border-slate-700 hover:border-blue-500 hover:text-blue-300 cursor-default transition-colors">SQL Server</span>
+                        <span class="px-3 py-1 bg-slate-800 text-slate-300 rounded-md text-sm border border-slate-700 hover:border-blue-500 hover:text-blue-300 cursor-default transition-colors">MySQL</span>
+                        <span class="px-3 py-1 bg-slate-800 text-slate-300 rounded-md text-sm border border-slate-700 hover:border-blue-500 hover:text-blue-300 cursor-default transition-colors">LINQ</span>
+                    </div>
+                </div>
+
+                <!-- Architecture & Tools -->
+                <div class="glass-panel p-6 rounded-xl border-t-2 border-t-purple-500">
+                    <h3 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                        <i class="ph ph-wrench text-purple-400"></i> Tools & Concepts
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-800 text-slate-300 rounded-md text-sm border border-slate-700 hover:border-purple-500 hover:text-purple-300 cursor-default transition-colors">Web API</span>
+                        <span class="px-3 py-1 bg-slate-800 text-slate-300 rounded-md text-sm border border-slate-700 hover:border-purple-500 hover:text-purple-300 cursor-default transition-colors">ASP.NET Zero</span>
+                        <span class="px-3 py-1 bg-slate-800 text-slate-300 rounded-md text-sm border border-slate-700 hover:border-purple-500 hover:text-purple-300 cursor-default transition-colors">DevExpress</span>
+                        <span class="px-3 py-1 bg-slate-800 text-slate-300 rounded-md text-sm border border-slate-700 hover:border-purple-500 hover:text-purple-300 cursor-default transition-colors">Azure</span>
+                        <span class="px-3 py-1 bg-slate-800 text-slate-300 rounded-md text-sm border border-slate-700 hover:border-purple-500 hover:text-purple-300 cursor-default transition-colors">API Optimization</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Matrix -->
+        <section id="projects" class="mb-24">
+            <div class="flex items-center gap-3 mb-10">
+                <i class="ph-fill ph-code-block text-3xl text-brand-400"></i>
+                <h2 class="text-3xl font-bold text-white">Project Matrix</h2>
+                <div class="h-px bg-dark-border flex-1 ml-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Project 1 -->
+                <div class="glass-panel p-6 rounded-xl group hover:bg-slate-800/50 transition-colors relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="ph-fill ph-bus text-6xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-brand-400 transition-colors">Bus Booking Engine</h3>
+                    <p class="text-sm text-slate-400 mb-4 line-clamp-2">Scalable booking platform handling travel operations.</p>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="text-xs font-mono bg-dark-bg border border-dark-border px-2 py-1 rounded text-slate-300">C#</span>
+                        <span class="text-xs font-mono bg-dark-bg border border-dark-border px-2 py-1 rounded text-slate-300">ASP.NET MVC/Core</span>
+                        <span class="text-xs font-mono bg-dark-bg border border-dark-border px-2 py-1 rounded text-slate-300">React.JS</span>
+                        <span class="text-xs font-mono bg-dark-bg border border-dark-border px-2 py-1 rounded text-slate-300">Azure</span>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="glass-panel p-6 rounded-xl group hover:bg-slate-800/50 transition-colors relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="ph-fill ph-gas-pump text-6xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-brand-400 transition-colors">Petrol Pump Mgmt System</h3>
+                    <p class="text-sm text-slate-400 mb-4 line-clamp-2">Comprehensive management solution for fuel stations.</p>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="text-xs font-mono bg-dark-bg border border-dark-border px-2 py-1 rounded text-slate-300">ASP.NET Core</span>
+                        <span class="text-xs font-mono bg-dark-bg border border-dark-border px-2 py-1 rounded text-slate-300">SQL Server</span>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="glass-panel p-6 rounded-xl group hover:bg-slate-800/50 transition-colors relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="ph-fill ph-game-controller text-6xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-brand-400 transition-colors">Game API</h3>
+                    <p class="text-sm text-slate-400 mb-4 line-clamp-2">High-performance backend API for gaming applications.</p>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="text-xs font-mono bg-dark-bg border border-dark-border px-2 py-1 rounded text-slate-300">Node.JS</span>
+                        <span class="text-xs font-mono bg-dark-bg border border-dark-border px-2 py-1 rounded text-slate-300">Nest.JS</span>
+                        <span class="text-xs font-mono bg-dark-bg border border-dark-border px-2 py-1 rounded text-slate-300">MySQL</span>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="glass-panel p-6 rounded-xl group hover:bg-slate-800/50 transition-colors relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="ph-fill ph-buildings text-6xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-brand-400 transition-colors">BT-SOFT</h3>
+                    <p class="text-sm text-slate-400 mb-4 line-clamp-2">Enterprise software built on robust Microsoft stack.</p>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="text-xs font-mono bg-dark-bg border border-dark-border px-2 py-1 rounded text-slate-300">ASP.NET Zero</span>
+                        <span class="text-xs font-mono bg-dark-bg border border-dark-border px-2 py-1 rounded text-slate-300">SQL Server</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Awards Section -->
+        <section id="awards" class="mb-24">
+            <div class="flex items-center gap-3 mb-10">
+                <i class="ph-fill ph-trophy text-3xl text-yellow-500"></i>
+                <h2 class="text-3xl font-bold text-white">Awards & Recognition</h2>
+                <div class="h-px bg-dark-border flex-1 ml-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass-panel p-6 rounded-xl border-l-4 border-l-yellow-500 flex items-start gap-4 hover:-translate-y-1 transition-transform">
+                    <div class="bg-yellow-500/10 p-3 rounded-full text-yellow-500">
+                        <i class="ph-fill ph-star text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Shining Star</h3>
+                        <p class="text-sm text-brand-400">Infinity Group of Companies</p>
+                    </div>
+                </div>
+                
+                <div class="glass-panel p-6 rounded-xl border-l-4 border-l-yellow-500 flex items-start gap-4 hover:-translate-y-1 transition-transform">
+                    <div class="bg-yellow-500/10 p-3 rounded-full text-yellow-500">
+                        <i class="ph-fill ph-medal text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Exceeding Expectations Tech</h3>
+                        <p class="text-sm text-brand-400">Infinity Group of Companies</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section class="mb-12">
+            <div class="flex items-center gap-3 mb-8">
+                <i class="ph-fill ph-student text-3xl text-brand-400"></i>
+                <h2 class="text-2xl font-bold text-white">Education Details</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass-panel p-5 rounded-lg border-l-2 border-slate-600">
+                    <h3 class="font-bold text-white">Master of Science (M.Sc) IT</h3>
+                    <p class="text-sm text-brand-400 mb-2">Shree Matrumandir Group of Colleges</p>
+                    <div class="text-xs font-mono text-slate-500">05/2021 - 03/2023</div>
+                </div>
+                <div class="glass-panel p-5 rounded-lg border-l-2 border-slate-600">
+                    <h3 class="font-bold text-white">Bachelor of Science (B.Sc) IT</h3>
+                    <p class="text-sm text-brand-400 mb-2">Atmiya Institute Of Technology & Science</p>
+                    <div class="text-xs font-mono text-slate-500">05/2018 - 03/2021</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-dark-border bg-dark-bg/80 backdrop-blur mt-12 py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-slate-500 text-sm font-mono">
+                System.out.println("Designed & Developed for Deep Thummar");
+            </p>
+            <p class="text-slate-600 text-xs mt-2">© 2026 Ready for new challenges.</p>
+        </div>
+    </footer>
+
+    <!-- Keyframe Animations for styling -->
+    <style>
+        @keyframes scan {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(300px); }
+        }
+    </style>
+
+    <script>
+        // Simple script for mobile menu and navbar blur effect on scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const navbar = document.getElementById('navbar');
+
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 10) {
+                    navbar.classList.add('shadow-lg', 'bg-dark-panel/90');
+                    navbar.classList.remove('bg-transparent');
+                } else {
+                    navbar.classList.remove('shadow-lg', 'bg-dark-panel/90');
+                    navbar.classList.add('bg-transparent');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
